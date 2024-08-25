@@ -4,11 +4,11 @@ A simple weather app built using Flutter. Data is taken from https://data.bmkg.g
 
 ## Screenshots
 
-![Main Screen](docs/main_screen.png)
+![Main Screen](docs/main_screen.jpg)
 
-![Choose Province](docs/choose_province.png)
+![Choose Province](docs/choose_province.jpg)
 
-![Choose Location](docs/choose_location.png)
+![Choose Location](docs/choose_location.jpg)
 
 
 ## Authors

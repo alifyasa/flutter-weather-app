@@ -23,7 +23,7 @@ class _WeatherInfoState extends State<WeatherInfo> {
     super.initState();
     weatherData = widget.weatherData;
 
-    // Set the selectedArea to the first city available in XML data
+    // Initialize selectedArea to the first city available in the XML data
     selectedArea = weatherData
         .xpath('data/forecast/area/name[@xml:lang="en_US"]')
         .map((e) => e.innerText)
@@ -32,7 +32,7 @@ class _WeatherInfoState extends State<WeatherInfo> {
 
   @override
   Widget build(BuildContext context) {
-    // Extract timestamp details from the XML data for display purposes
+    // Extract timestamp details from the XML data to display last update time
     final timestampYear =
         weatherData.xpath('data/forecast/issue/year').first.innerText;
     final timestampMonth =
@@ -40,7 +40,7 @@ class _WeatherInfoState extends State<WeatherInfo> {
     final timestampDay =
         weatherData.xpath('data/forecast/issue/day').first.innerText;
 
-    // Retrieve the list of cities from the XML data for the dropdown menu
+    // Retrieve the list of cities from the XML data to populate the dropdown menu
     List<String> cities = weatherData
         .xpath('data/forecast/area/name[@xml:lang="en_US"]')
         .map((e) => e.innerText)
@@ -52,13 +52,6 @@ class _WeatherInfoState extends State<WeatherInfo> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Weather Info for: $selectedArea", 
-        ),
-        Text(
-          "Last Updated: $timestampYear-$timestampMonth-$timestampDay",
-        ),
-        const SizedBox(height: 8.0),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SizedBox(
@@ -81,13 +74,26 @@ class _WeatherInfoState extends State<WeatherInfo> {
             ),
           ),
         ),
+        const SizedBox(height: 4.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            "Weather Info for: $selectedArea",
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            "Last Updated: $timestampYear-$timestampMonth-$timestampDay",
+          ),
+        ),
         const SizedBox(height: 8.0),
+        // Display weather information for the selected area
         selectedArea != null
             ? AreaInfo(
                 key: ValueKey(selectedArea!),
                 weatherData: weatherData,
-                area: selectedArea!
-              )
+                area: selectedArea!)
             : const CircularProgressIndicator(),
       ],
     );

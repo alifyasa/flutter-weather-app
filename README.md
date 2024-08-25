@@ -8,7 +8,7 @@ A simple weather app built using Flutter. Data is taken from https://data.bmkg.g
 
 ![Choose Province](docs/choose_province.jpg)
 
-![Choose Location](docs/choose_location.jpg)
+![Choose Area](docs/choose_area.jpg)
 
 
 ## Authors
